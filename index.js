@@ -1,9 +1,9 @@
 const express = require('express');
 const axios = require('axios');
-const port = process.env.PORT || 4000;
+const PORT = process.env.PORT || 4000
 const app = express();
-const fetch = require('node-fetch');
 const https = require('https');
+
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const request = require('request');
 const httpProxy = require('express-http-proxy')
@@ -16,9 +16,8 @@ app.all('/*', function(req, res, next) {
 });
 
 
-app.get('/', (req, res, next) => {
+app.get('/', (req, res) => {
   res.send('<h1>Welcome to the Quake API</h1>');
-  next();
 });
 
 app.get('/quakes', async (req, res) => {
@@ -44,6 +43,6 @@ app.get('/quakes', async (req, res) => {
 
 app.use('/', createProxyMiddleware({ target: 'https://earthquake.usgs.gov/fdsnws/event/1', changeOrigin: true }));
 
-app.listen(port || 5000, () => {
- console.log(`Server is up and running`);
+app.listen(PORT || 5000, () => {
+ console.log(`Server is listening on port}`);
 });
