@@ -16,7 +16,7 @@ app.all('/*', function(req, res, next) {
 });
 
 
-app.get('/', function(req, res, next) => {
+app.get('/', (req, res, next) => {
   res.send('<h1>Welcome to the Quake API</h1>');
   next();
 });
